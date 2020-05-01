@@ -59,6 +59,7 @@ enum GameStatus {
 
 class DigitalViewModel: ObservableObject {
     
+    let impactFeedback = UIImpactFeedbackGenerator(style: .medium)
     var digitalCount:Int
     var secretDigitalArray:[Int] = [Int]()
     
@@ -147,6 +148,7 @@ class DigitalViewModel: ObservableObject {
         
         let geussResult = GeussResult(bullCount: bullsCount, cowCount: cowsCount, inputStr: inputStr)
         self.resultArray.append(geussResult)
+        self.impactFeedback.impactOccurred()
         resetInPutDigital()
         
         if bullsCount == digitalCount {

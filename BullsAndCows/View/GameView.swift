@@ -12,7 +12,7 @@ struct GameView: View {
     @EnvironmentObject var digitalObject:DigitalViewModel
     
     var body: some View {
-        Image("background").resizable().edgesIgnoringSafeArea(.all).blur(radius: 3).overlay(
+        Image("background").resizable().edgesIgnoringSafeArea(.all).blur(radius: 4).overlay(
         VStack(spacing:0) {
             Spacer().frame(height:30)
             
@@ -26,7 +26,7 @@ struct GameView: View {
                 ForEach (digitalObject.inputDigitalArray.indices) { index in
                     DigitalTextField(text:self.$digitalObject.inputDigitalArray[index].digitalStr, inFocus: self.$digitalObject.inputDigitalArray[index].inFocus)
                         .frame(width:50, height: 50)
-                        .background(Color.yellow)
+                        .background(Color(red: 0, green: 153 / 255, blue: 0).opacity(0.5))
                 }
                 Spacer()
             }
