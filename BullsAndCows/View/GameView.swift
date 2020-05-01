@@ -10,34 +10,52 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var digitalObject:DigitalViewModel
-    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {
-        VStack {
+        Image("background").resizable().edgesIgnoringSafeArea(.all).blur(radius: 3).overlay(
+        VStack(spacing:0) {
             Spacer().frame(height:30)
+            
+            Text("Bulls & Cows")
+                .font(.system(size: 40))
+                .shadow(radius: 5)
+                .foregroundColor(Color.white)
+            
             HStack{
                 Spacer()
                 ForEach (digitalObject.inputDigitalArray.indices) { index in
                     DigitalTextField(text:self.$digitalObject.inputDigitalArray[index].digitalStr, inFocus: self.$digitalObject.inputDigitalArray[index].inFocus)
                         .frame(width:50, height: 50)
-                        .background(Color.pink)
+                        .background(Color.yellow)
                 }
                 Spacer()
-            }.background(colorScheme == .light ? Color.white : Color.black)
+            }
             .zIndex(3)
+                .frame(height:70)
+                .padding(.bottom, 10)
             
             List {
                 ForEach(Array(digitalObject.resultArray.enumerated()), id:\.1.id) { idx, result in
                     HStack {
                         Text("\(idx + 1).")
+                            .foregroundColor(Color.white)
                         Spacer()
-                        Text("\(result.inputStr)").font(.system(size: 25))
+                        Text("\(result.inputStr)")
+                            .font(.system(size: 25))
+                            .foregroundColor(Color.white)
                         Spacer().frame(width:20)
-                        Text("\(result.bullCount)🐂\(result.cowCount)🐄").font(.system(size: 25))
-                    }.frame(height:30)
+                        Text("\(result.bullCount)🐂\(result.cowCount)🐄")
+                            .font(.system(size: 25))
+                            .foregroundColor(Color.white)
+                    }.listRowBackground(Color.green.opacity(0.4))
+                    .frame(height:30)
+                        
                 }
                 Spacer().frame(height:digitalObject.listSpacerHeight)
             }.offset(y:-digitalObject.listOffset)
+                .animation(.default)
+                .clipped()
+                .background(Color.clear)
             Spacer()
         }.onTapGesture {
             self.digitalObject.hideKeyboard()
@@ -48,6 +66,11 @@ struct GameView: View {
                 self.digitalObject.playAgain()
                }))
         }
+        .onAppear{
+            UITableView.appearance().separatorColor = .clear
+            UITableView.appearance().backgroundColor = .clear
+            UITableViewCell.appearance().backgroundColor = .clear
+        })
     }
     
     func alertTitle() -> String {
@@ -76,6 +99,14 @@ struct GameView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView().environmentObject(DigitalViewModel(digitalCount: 4))
+        Group {
+            GameView().environmentObject(DigitalViewModel(digitalCount: 4))
+            .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
+            .previewDisplayName("iPhone SE")
+            
+            GameView().environmentObject(DigitalViewModel(digitalCount: 4))
+                       .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))
+                       .previewDisplayName("iPad Pro")
+        }
     }
 }

@@ -21,7 +21,7 @@ struct DigitalTextField: UIViewRepresentable {
         textField.keyboardType = .numberPad
         textField.textAlignment = .center
         textField.font = UIFont.boldSystemFont(ofSize: 30)
-        textField.textColor = UIColor.white
+        textField.textColor = UIColor(red: 0, green: 153/255, blue: 255/255, alpha: 1)
         return textField
     }
 
