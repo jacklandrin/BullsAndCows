@@ -10,18 +10,21 @@ import SwiftUI
 
 struct GameView: View {
     @EnvironmentObject var digitalObject:DigitalViewModel
+    @Environment(\.colorScheme) var colorScheme: ColorScheme
     
     var body: some View {
         VStack {
             Spacer().frame(height:30)
             HStack{
+                Spacer()
                 ForEach (digitalObject.inputDigitalArray.indices) { index in
                     DigitalTextField(text:self.$digitalObject.inputDigitalArray[index].digitalStr, inFocus: self.$digitalObject.inputDigitalArray[index].inFocus)
                         .frame(width:50, height: 50)
                         .background(Color.pink)
                 }
-                
-            }
+                Spacer()
+            }.background(colorScheme == .light ? Color.white : Color.black)
+            .zIndex(3)
             
             List {
                 ForEach(Array(digitalObject.resultArray.enumerated()), id:\.1.id) { idx, result in
@@ -38,6 +41,7 @@ struct GameView: View {
             Spacer()
         }.onTapGesture {
             self.digitalObject.hideKeyboard()
+            self.digitalObject.objectWillChange.send()
         }
         .alert(isPresented: .init(get: {self.digitalObject.status != .InGame}, set: {self.digitalObject.status = $0 ? .Over : .InGame })) {
             Alert(title: Text(alertTitle()), message: Text(alertMessage()), dismissButton: .default(Text("Yes"), action: {

@@ -165,7 +165,7 @@ class DigitalViewModel: ObservableObject {
     @objc func keyBoardDidShow(_ notification:Notification)
     {
         keyboardHeight = (notification.userInfo?["UIKeyboardBoundsUserInfoKey"] as! CGRect).height
-        let totalHeight = 180.0 + keyboardHeight + CGFloat(self.resultArray.count) * 30.0
+        let totalHeight = 210.0 + keyboardHeight + CGFloat(self.resultArray.count) * 30.0
         let window = UIApplication.shared.windows[0]
         let topPadding = window.safeAreaInsets.top
         let bottomPadding = window.safeAreaInsets.bottom
