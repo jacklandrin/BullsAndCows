@@ -37,6 +37,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		CC63C5EF2513AE8A00740A60 /* Bulls & Cows.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Bulls & Cows.entitlements"; sourceTree = "<group>"; };
 		CCAD6769245A9ED100E5D141 /* Bulls & Cows.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Bulls & Cows.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CCAD676C245A9ED100E5D141 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CCAD676E245A9ED100E5D141 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,6 +104,7 @@
 		CCAD676B245A9ED100E5D141 /* BullsAndCows */ = {
 			isa = PBXGroup;
 			children = (
+				CC63C5EF2513AE8A00740A60 /* Bulls & Cows.entitlements */,
 				CCAD679F245AA8F500E5D141 /* ViewModel */,
 				CCAD679C245AA09900E5D141 /* View */,
 				CCAD676C245A9ED100E5D141 /* AppDelegate.swift */,
@@ -458,6 +460,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "BullsAndCows/Bulls & Cows.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BullsAndCows/Preview Content\"";
 				DEVELOPMENT_TEAM = B22726TNGH;
@@ -469,6 +472,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jack.BullsAndCows;
 				PRODUCT_NAME = "Bulls & Cows";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -478,6 +482,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "BullsAndCows/Bulls & Cows.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"BullsAndCows/Preview Content\"";
 				DEVELOPMENT_TEAM = B22726TNGH;
@@ -489,6 +494,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = jack.BullsAndCows;
 				PRODUCT_NAME = "Bulls & Cows";
+				SUPPORTS_MACCATALYST = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

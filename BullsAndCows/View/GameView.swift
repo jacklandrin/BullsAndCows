@@ -51,15 +51,26 @@ struct GameView: View {
                     .frame(height:30)
                         
                 }
-                Spacer().frame(height:digitalObject.listSpacerHeight)
-            }.offset(y:-digitalObject.listOffset)
+                if #available(iOS 14, *) {
+                    
+                } else {
+                    Spacer()
+                        .frame(height:digitalObject.listSpacerHeight)
+                }
+                
+            }.offset(y:-digitalObject.listOffset)// for iOS 13
                 .animation(.default)
                 .clipped()
                 .background(Color.clear)
             Spacer()
         }.onTapGesture {
-            self.digitalObject.hideKeyboard()
-            self.digitalObject.objectWillChange.send()
+            if #available(iOS 14, *) {
+                
+            } else {
+                self.digitalObject.hideKeyboard()
+                self.digitalObject.objectWillChange.send()
+            }
+            
         }
         .alert(isPresented: .init(get: {self.digitalObject.status != .InGame}, set: {self.digitalObject.status = $0 ? .Over : .InGame })) {
             Alert(title: Text(alertTitle()), message: Text(alertMessage()), dismissButton: .default(Text("Yes"), action: {
@@ -102,7 +113,7 @@ struct ContentView_Previews: PreviewProvider {
         Group {
             GameView().environmentObject(DigitalViewModel(digitalCount: 4))
             .previewDevice(PreviewDevice(rawValue: "iPhone SE"))
-            .previewDisplayName("iPhone SE")
+            .previewDisplayName("iPhone X")
             
             GameView().environmentObject(DigitalViewModel(digitalCount: 4))
                        .previewDevice(PreviewDevice(rawValue: "iPad Pro (12.9-inch) (3rd generation)"))

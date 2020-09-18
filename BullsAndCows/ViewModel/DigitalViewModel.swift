@@ -89,9 +89,14 @@ class DigitalViewModel: ObservableObject {
         self.digitalCount = digitalCount
         createNewSecretDigitalArray()
         createInputDigital()
-        let center = NotificationCenter.default
-        center.addObserver(self, selector: #selector(keyBoardDidShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        center.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        if #available(iOS 14, *) {
+            
+        } else {
+            let center = NotificationCenter.default
+            center.addObserver(self, selector: #selector(keyBoardDidShow(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+            center.addObserver(self, selector: #selector(keyboardWillHide(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+        }
+        
     }
     
     func playAgain() {
